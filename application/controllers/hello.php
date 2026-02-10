@@ -13,3 +13,4 @@ class hello extends CI_Controller {
     $this->load->view('hello_view' ,$data);
 }
 }
+
