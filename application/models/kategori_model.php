@@ -21,4 +21,14 @@ class kategori_model extends CI_Model{
     {
         return $this->db->where('kategori_id',$id)->count_all_results('buku')>0;
     }
+    public function get_by_id($id)
+    {
+        return $this->db->get_where($this->table, ['id' => $id])->row();
+    }
+
+    public function update($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update($this->table, $data);
+    }
 }

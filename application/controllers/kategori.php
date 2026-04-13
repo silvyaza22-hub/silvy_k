@@ -45,4 +45,24 @@ class kategori extends CI_Controller{
         // }
         redirect('kategori');
     }
+    public function edit($id)
+{
+    $data['kategori'] = $this->kategori_model->get_by_id($id);
+
+    $this->load->view('templates/header');
+    $this->load->view('templates/sidebar');
+    $this->load->view('templates/topbar');
+    $this->load->view('kategori/edit', $data);
+    $this->load->view('templates/footer');
+}
+
+public function update($id)
+{
+    $data = [
+        'nama_kategori' => $this->input->post('nama_kategori')
+    ];
+
+    $this->kategori_model->update($id, $data);
+    redirect('kategori');
+}
 }
