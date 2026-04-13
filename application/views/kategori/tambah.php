@@ -9,7 +9,7 @@
     <input type="text" name="nama_kategori" class="form-control" required>
 </div>
 
-    <button type="submit" class="btn btn-primary">SimpanN</button>
+    <button type="submit" class="btn btn-primary">Simpan</button>
     <a href="<?= site_url('kategori');?>" class="btn btn-secondary">Kembali</a>
 
 </form>
