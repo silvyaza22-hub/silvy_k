@@ -1,16 +1,19 @@
-</div>
-</div>
+        </div> 
+    </div> 
+</div> 
 
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
-<!-- DataTables CSS -->
 <script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js') ?>"></script> 
 <script src="<?= base_url('assets/js/sb-admin-2.min.js');?>"></script>
 
 <script>
-    $(document).ready(function(){
+$(document).ready(function(){
     $('#dataTable').DataTable({
         "language": {
             "search": "Cari:",
@@ -24,5 +27,6 @@
     });
 });
 </script>
+
 </body>
 </html>
