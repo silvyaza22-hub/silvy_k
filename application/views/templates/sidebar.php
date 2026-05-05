@@ -18,9 +18,9 @@
 <hr class="sidebar-divider my-0">
 
 <li class="nav-item activer">
-    <a class="nav-link" href="<?= site_url('dashboard') ?>">
+    <a class="nav-link" href="<?= site_url('anggota') ?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span>
+        <span>anggota</span>
     </a>
 </li>
 
@@ -34,7 +34,26 @@
 </li>
 
 
+
 <hr class="sidebar-divider d-none d-md-block">
+
+<li class="nav-item activer">
+    <a class="nav-link" href="<?= site_url('peminjaman') ?>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>peminjaman</span>
+    </a>
+</li>
+
+<hr class="sidebar-divider my-0">
+
+<li class="nav-item activer">
+    <a class="nav-link" href="<?= site_url('buku') ?>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>buku</span>
+    </a>
+</li>
+
+<hr class="sidebar-divider my-0">
 
 </ul>
 <div id="content-wrapper" class="d-flex flex-column">
