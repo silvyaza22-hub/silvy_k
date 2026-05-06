@@ -24,12 +24,12 @@
     <tr>
         <td><?= $no++; ?></td>
         <td><?= $d->kode_peminjaman; ?></td>
-        <td><?= $d->nama ?></td>
+        <td><?= $d->nama; ?></td>
         <td><?= $d->tanggal_pinjam; ?></td>
         <td><?= $d->status; ?></td>
         <td>
             <?php if($d->status =='dipinjam'): ?>
-                <a href="<?= site_url('peminjaman/kembali/'. $id->id); ?>"
+                <a href="<?= site_url('peminjaman/kembali/'. $d->id); ?>">
                 class="btn btn-success btn-sm">
                 Kembalikan            
             </a>
