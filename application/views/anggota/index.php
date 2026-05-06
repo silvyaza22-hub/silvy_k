@@ -23,7 +23,7 @@
                             <th>Nama</th>
                             <th>Telepon</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>StAtus</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
