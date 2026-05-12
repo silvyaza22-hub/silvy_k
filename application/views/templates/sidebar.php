@@ -39,6 +39,13 @@
             <span>peminjaman</span>
         </a>
     </li>
+ 
+    <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('laporan/peminjaman'); ?>">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>laporan_peminjaman</span>
+        </a>
+    </li>
 
 
 

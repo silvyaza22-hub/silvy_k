@@ -11,12 +11,11 @@
 <thead class="thead-dark">
     <tr>
         <th>No</th>
-        <th>Kode</th>
+        <th>Kode peminjaman</th>
         <th>Nama</th>
         <th>Tanggal</th>
         <th>Status</th>
         <th>Aksi</th>
-
     </tr>
 </thead>
 <tbody>
@@ -29,12 +28,11 @@
         <td><?= $d->status; ?></td>
         <td>
             <?php if($d->status =='dipinjam'): ?>
-                <a href="<?= site_url('peminjaman/kembali/'. $d->id); ?>">
-                class="btn btn-success btn-sm">
-                Kembalikan            
-            </a>
-            <?php endif; ?>
+                <a href="<?= site_url('peminjaman/kembali/'). $d->id; ?>" class="btn btn-success btn-sm">
+                    kembalikan
+                </a>
         </td>
+        <?php endif; ?>
     </tr>
 <?php endforeach; ?>
 </tbody>

@@ -9,7 +9,7 @@ class Buku_model extends CI_Model {
     {
         $this->db->select('buku.*, kategori.nama_kategori');
         $this->db->from('buku');
-        $this->db->join('kategori', 'kategori.id = buku.id_kategori');
+        $this->db->join('kategori', 'kategori.id = buku.kategori_id');
         return $this->db->get()->result();
     }
 
