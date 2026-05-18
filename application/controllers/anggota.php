@@ -46,6 +46,7 @@ class Anggota extends CI_Controller {
         $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
         redirect('anggota');
     }
+
     public function hapus($nomor)
     {
         $this->anggota_model->delete($nomor);
@@ -76,4 +77,12 @@ class Anggota extends CI_Controller {
         $this->anggota_model->update($nomor, $data);
         redirect('anggota');
     }
+
+    public function cetak_anggota()
+    {
+        $data['anggota'] = $this->db->get('anggota')->result();
+
+        $this->load->view('laporan/cetak_anggota', $data);
+    }
+
 }

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class laporan extends CI_Controller{
+
     public function __construct()
     {
         parent::__construct();
@@ -22,6 +23,7 @@ class laporan extends CI_Controller{
         if($bulan){
             $this->db->where('DATE_FORMAT(tanggal_pinjam,"%Y-%m")=', $bulan);
         }
+
         $data['data'] = $this->db->get()->result();
         $data['bulan'] = $bulan;
 
@@ -31,5 +33,59 @@ class laporan extends CI_Controller{
         $this->load->view('laporan/peminjaman', $data);
         $this->load->view('templates/footer');
     }
-    
+
+    public function buku()
+    {
+        $judul = $this->input->get('judul');
+
+        $this->db->from('buku');
+
+        if($judul){
+            $this->db->like('judul', $judul);
+        }
+
+        $data['buku'] = $this->db->get()->result();
+        $data['judul'] = $judul;
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('laporan/buku', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function cetak_buku()
+    {
+        $data['buku'] = $this->db->get('buku')->result();
+
+        $this->load->view('laporan/cetak_buku', $data);
+    }
+
+    public function anggota()
+{
+    $nama = $this->input->get('nama');
+
+    $this->db->from('anggota');
+
+    if($nama){
+        $this->db->like('nama', $nama);
+    }
+
+    $data['anggota'] = $this->db->get()->result();
+    $data['nama'] = $nama;
+
+    $this->load->view('templates/header');
+    $this->load->view('templates/sidebar');
+    $this->load->view('templates/topbar');
+    $this->load->view('laporan/anggota', $data);
+    $this->load->view('templates/footer');
+}
+
+    public function cetak_anggota()
+    {
+        $data['anggota'] = $this->db->get('anggota')->result();
+
+        $this->load->view('laporan/cetak_anggota', $data);
+    }
+
 }

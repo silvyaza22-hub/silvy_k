@@ -108,4 +108,20 @@ class Buku extends CI_Controller {
             redirect('buku');
         }
     }
+
+    public function cetak_buku()
+    {
+        $judul = $this->input->get('judul');
+
+        $this->db->from('buku');
+
+        if($judul){
+            $this->db->like('judul', $judul);
+        }
+
+        $data['buku'] = $this->db->get()->result();
+
+        $this->load->view('laporan/cetak_buku', $data);
+    }
+
 }
