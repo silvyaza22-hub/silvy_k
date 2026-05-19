@@ -33,27 +33,26 @@ class laporan extends CI_Controller{
         $this->load->view('laporan/peminjaman', $data);
         $this->load->view('templates/footer');
     }
-
     public function buku()
-    {
-        $judul = $this->input->get('judul');
+{
+    $keyword = $this->input->get('keyword');
 
-        $this->db->from('buku');
+    $this->db->from('buku');
 
-        if($judul){
-            $this->db->like('judul', $judul);
-        }
-
-        $data['buku'] = $this->db->get()->result();
-        $data['judul'] = $judul;
-
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
-        $this->load->view('laporan/buku', $data);
-        $this->load->view('templates/footer');
+    if($keyword){
+        $this->db->like('penulis', $keyword);
+        $this->db->or_like('penerbit', $keyword);
     }
 
+    $data['buku'] = $this->db->get()->result();
+    $data['keyword'] = $keyword;
+
+    $this->load->view('templates/header');
+    $this->load->view('templates/sidebar');
+    $this->load->view('templates/topbar');
+    $this->load->view('laporan/buku', $data);
+    $this->load->view('templates/footer');
+}
     public function cetak_buku()
     {
         $data['buku'] = $this->db->get('buku')->result();

@@ -5,9 +5,9 @@
     <form method="GET">
 
         <input type="text"
-               name="judul"
-               value="<?= $judul ?>"
-               placeholder="Cari judul">
+               name="keyword"
+               value="<?= $keyword ?>"
+               placeholder="Cari penulis dan penerbit">
 
         <button type="submit" class="btn btn-secondary">
             filter
