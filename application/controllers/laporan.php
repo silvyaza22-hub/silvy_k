@@ -1,27 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class laporan extends CI_Controller{
+class Laporan extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
 
-        if(!$this->session->userdata('login')){
+        if (!$this->session->userdata('login')) {
             redirect('login');
         }
     }
 
-    public function peminjaman()
+    public function index()
+    {
+        redirect('laporan/pendaftaran');
+    }
+
+    public function pendaftaran()
     {
         $bulan = $this->input->get('bulan');
 
-        $this->db->select('peminjaman.*, anggota.nama');
-        $this->db->from('peminjaman');
-        $this->db->join('anggota', 'anggota.nomor_anggota = peminjaman.anggota_id');
-        
-        if($bulan){
-            $this->db->where('DATE_FORMAT(tanggal_pinjam,"%Y-%m")=', $bulan);
+        $this->db->select('pendaftaran.*, pasien.nama AS nama_pasien, dokter.nama_dokter');
+        $this->db->from('pendaftaran');
+        $this->db->join('pasien', 'pasien.id_pasien = pendaftaran.id_pasien');
+        $this->db->join('dokter', 'dokter.id_dokter = pendaftaran.id_dokter');
+
+        if (!empty($bulan)) {
+            $this->db->where('DATE_FORMAT(tanggal_daftar,"%Y-%m") =', $bulan);
         }
 
         $data['data'] = $this->db->get()->result();
@@ -30,61 +36,53 @@ class laporan extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view('laporan/peminjaman', $data);
+        $this->load->view('laporan/pendaftaran', $data);
         $this->load->view('templates/footer');
     }
-    public function buku()
-{
-    $keyword = $this->input->get('keyword');
 
-    $this->db->from('buku');
-
-    if($keyword){
-        $this->db->like('penulis', $keyword);
-        $this->db->or_like('penerbit', $keyword);
-    }
-
-    $data['buku'] = $this->db->get()->result();
-    $data['keyword'] = $keyword;
-
-    $this->load->view('templates/header');
-    $this->load->view('templates/sidebar');
-    $this->load->view('templates/topbar');
-    $this->load->view('laporan/buku', $data);
-    $this->load->view('templates/footer');
-}
-    public function cetak_buku()
+    public function pasien()
     {
-        $data['buku'] = $this->db->get('buku')->result();
+        $data['pasien'] = $this->db->get('pasien')->result();
 
-        $this->load->view('laporan/cetak_buku', $data);
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('laporan/pasien', $data);
+        $this->load->view('templates/footer');
     }
 
-    public function anggota()
+    public function dokter()
+    {
+        $data['dokter'] = $this->db->get('dokter')->result();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('laporan/dokter', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function cetak_pendaftaran()
 {
-    $nama = $this->input->get('nama');
+    $this->db->select('pendaftaran.*, pasien.nama AS nama_pasien, dokter.nama_dokter');
+    $this->db->from('pendaftaran');
+    $this->db->join('pasien', 'pasien.id_pasien = pendaftaran.id_pasien');
+    $this->db->join('dokter', 'dokter.id_dokter = pendaftaran.id_dokter');
 
-    $this->db->from('anggota');
+    $data['data'] = $this->db->get()->result();
 
-    if($nama){
-        $this->db->like('nama', $nama);
-    }
-
-    $data['anggota'] = $this->db->get()->result();
-    $data['nama'] = $nama;
-
-    $this->load->view('templates/header');
-    $this->load->view('templates/sidebar');
-    $this->load->view('templates/topbar');
-    $this->load->view('laporan/anggota', $data);
-    $this->load->view('templates/footer');
+    $this->load->view('laporan/cetak_pendaftaran', $data);
 }
 
-    public function cetak_anggota()
+    public function cetak_pasien()
     {
-        $data['anggota'] = $this->db->get('anggota')->result();
-
-        $this->load->view('laporan/cetak_anggota', $data);
+        $data['pasien'] = $this->db->get('pasien')->result();
+        $this->load->view('laporan/cetak_pasien', $data);
     }
 
+    public function cetak_dokter()
+    {
+        $data['dokter'] = $this->db->get('dokter')->result();
+        $this->load->view('laporan/cetak_dokter', $data);
+    }
 }

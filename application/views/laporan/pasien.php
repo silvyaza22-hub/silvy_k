@@ -1,28 +1,28 @@
 <div class="container">
 
-    <h3>Laporan Anggota</h3>
+    <h3>Laporan Pasien</h3>
 
     <form method="GET">
 
         <input type="text"
                name="nama"
                value="<?= $nama ?>"
-               placeholder="Cari nama anggota">
+               placeholder="Cari nama pasien">
 
         <button type="submit" class="btn btn-secondary">
-            filter
+            Filter
         </button>
 
-        <a href="<?= base_url('laporan/anggota') ?>"
+        <a href="<?= base_url('laporan/pasien') ?>"
            class="btn btn-secondary">
-           reset
+           Reset
         </a>
 
     </form>
 
     <br>
 
-    <a href="<?= base_url('laporan/cetak_anggota') ?>" 
+    <a href="<?= base_url('laporan/cetak_pasien') ?>"
        target="_blank"
        class="btn btn-primary mb-3">
        Cetak PDF
@@ -32,25 +32,25 @@
 
         <tr>
             <th>No</th>
-            <th>Nomor Anggota</th>
-            <th>Nama</th>
+            <th>Nama Pasien</th>
+            <th>Alamat</th>
             <th>Telepon</th>
-            <th>Email</th>
+            <th>Keluhan</th>
             <th>Status</th>
         </tr>
 
-        <?php 
+        <?php
         $no = 1;
-        foreach($anggota as $a){
+        foreach($pasien as $p){
         ?>
 
         <tr>
             <td><?= $no++ ?></td>
-            <td><?= $a->nomor_anggota ?></td>
-            <td><?= $a->nama ?></td>
-            <td><?= $a->telepon ?></td>
-            <td><?= $a->email ?></td>
-            <td><?= $a->status ?></td>
+            <td><?= $p->nama ?></td>
+            <td><?= $p->alamat ?></td>
+            <td><?= $p->telepon ?></td>
+            <td><?= $p->keluhan ?></td>
+            <td><?= $p->status ?></td>
         </tr>
 
         <?php } ?>

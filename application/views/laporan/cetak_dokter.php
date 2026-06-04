@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Cetak Anggota</title>
+    <title>Cetak Dokter</title>
 
     <style>
 
@@ -22,31 +22,25 @@
 
 <body onload="window.print()">
 
-    <h2>Laporan Anggota</h2>
+    <h2>Laporan Data Dokter</h2>
 
     <table>
 
         <tr>
             <th>No</th>
-            <th>Nomor Anggota</th>
-            <th>Nama</th>
-            <th>Telepon</th>
-            <th>Email</th>
-            <th>Status</th>
+            <th>Nama Dokter</th>
+            <th>Spesialis</th>
         </tr>
 
-        <?php 
+        <?php
         $no = 1;
-        foreach($anggota as $a){
+        foreach($dokter as $d){
         ?>
 
         <tr>
             <td><?= $no++ ?></td>
-            <td><?= $a->nomor_anggota ?></td>
-            <td><?= $a->nama ?></td>
-            <td><?= $a->telepon ?></td>
-            <td><?= $a->email ?></td>
-            <td><?= $a->status ?></td>
+            <td><?= $d->nama_dokter ?></td>
+            <td><?= $d->spesialis ?></td>
         </tr>
 
         <?php } ?>

@@ -1,10 +1,9 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-hospital"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">perpustakaan</div>
+        <div class="sidebar-brand-text mx-3">Rumah Sakit</div>
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -17,51 +16,37 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('kategori'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Kategori</span>
+        <a class="nav-link" href="<?= site_url('pasien'); ?>">
+            <i class="fas fa-fw fa-user-injured"></i>
+            <span>Data Pasien</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('anggota'); ?>">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Anggota</span>
+        <a class="nav-link" href="<?= site_url('dokter'); ?>">
+            <i class="fas fa-fw fa-user-md"></i>
+            <span>Data Dokter</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('buku'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Buku</span>
+        <a class="nav-link" href="<?= site_url('pendaftaran'); ?>">
+            <i class="fas fa-fw fa-notes-medical"></i>
+            <span>Pendaftaran</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('peminjaman'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Peminjaman</span>
+        <a class="nav-link" href="<?= site_url('laporan'); ?>">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Laporan</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('laporan/peminjaman'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Laporan Peminjaman</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('laporan/buku'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Laporan Buku</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('laporan/anggota'); ?>">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Laporan Anggota</span>
+        <a class="nav-link" href="<?= site_url('auth/logout'); ?>">
+            <i class="fas fa-fw fa-sign-out-alt"></i>
+            <span>Logout</span>
         </a>
     </li>
 
