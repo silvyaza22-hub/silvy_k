@@ -1,28 +1,64 @@
 <div class="container-fluid">
 
-<h1 class="h3 mb-4 text-gray-800">Tambah Dokter</h1>
+    <div class="card shadow mb-4">
 
-<div class="card shadow">
-<div class="card-body">
+        <div class="card-header">
+            <h4>
+                <i class="fas fa-user-md mr-2"></i>
+                Tambah Data Dokter
+            </h4>
+        </div>
 
-<form method="post" action="<?= site_url('dokter/simpan'); ?>">
+        <div class="card-body">
 
-<div class="form-group">
-<label>Nama Dokter</label>
-<input type="text" name="nama_dokter" class="form-control" required>
-</div>
+            <form method="post" action="<?= site_url('dokter/simpan'); ?>">
 
-<div class="form-group">
-<label>Spesialis</label>
-<input type="text" name="spesialis" class="form-control" required>
-</div>
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-user-md mr-1"></i>
+                        Nama Dokter
+                    </label>
+                    <input type="text"
+                           name="nama_dokter"
+                           class="form-control"
+                           placeholder="Masukkan nama dokter"
+                           required>
+                </div>
 
-<button type="submit" class="btn btn-primary">Simpan</button>
-<a href="<?= site_url('dokter'); ?>" class="btn btn-secondary">Kembali</a>
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-stethoscope mr-1"></i>
+                        Spesialis
+                    </label>
+                    <input type="text"
+                           name="spesialis"
+                           class="form-control"
+                           placeholder="Contoh: Umum, Anak, Jantung, Gigi"
+                           required>
+                </div>
 
-</form>
+                <hr>
 
-</div>
-</div>
+                <div class="text-right">
+
+                    <a href="<?= site_url('dokter'); ?>"
+                       class="btn btn-light border">
+                        <i class="fas fa-arrow-left mr-1"></i>
+                        Kembali
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        <i class="fas fa-save mr-1"></i>
+                        Simpan Data
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>

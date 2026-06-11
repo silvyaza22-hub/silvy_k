@@ -57,3 +57,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth';
 $route['login/proses'] = 'auth/login';
 $route['logout'] = 'auth/logout';
+
+$route['login-pasien'] = 'login_pasien';

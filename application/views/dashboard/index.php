@@ -1,69 +1,204 @@
 
-<h1 class="h3 mb-4 text-gray-800">
-    <i class="fas fa-hospital-alt"></i>
-    Dashboard Rumah Sakit
-</h1>
+<div class="card border-0 shadow-lg mb-4"
+     style="border-radius:25px;
+            background:linear-gradient(135deg,#0f4c81,#42a5f5);">
+
+    <div class="card-body p-5 text-white">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <h2 class="font-weight-bold">
+                    🏥 Sistem Informasi Rumah Sakit
+                </h2>
+
+                <p class="lead mb-0">
+                    Kelola data pasien, dokter dan pendaftaran
+                    dengan cepat dan mudah.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+
+                <i class="fas fa-hospital-alt"
+                   style="font-size:100px;opacity:.2;"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <div class="row">
 
-    <!-- Total Pasien -->
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2"
-             style="border-left:5px solid #800020; border-radius:15px;">
-            <div class="card-body text-center">
+    <div class="col-md-4 mb-4">
 
-                <i class="fas fa-user-injured fa-3x mb-3"
-                   style="color:#800020;"></i>
+        <div class="card border-0 shadow"
+             style="border-radius:20px;">
 
-                <h5 class="font-weight-bold">Total Pasien</h5>
+            <div class="card-body">
 
-                <h2 class="font-weight-bold"
-                    style="color:#800020;">
-                    <?= $total_pasien; ?>
-                </h2>
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Total Pasien
+                        </small>
+
+                        <h1 class="font-weight-bold text-primary">
+                            <?= $total_pasien ?>
+                        </h1>
+
+                    </div>
+
+                    <i class="fas fa-user-injured
+                              fa-4x text-primary"></i>
+
+                </div>
 
             </div>
+
         </div>
+
     </div>
 
-    <!-- Total Dokter -->
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2"
-             style="border-left:5px solid #f6c23e; border-radius:15px;">
-            <div class="card-body text-center">
+    <div class="col-md-4 mb-4">
 
-                <i class="fas fa-user-md fa-3x mb-3"
-                   style="color:#f6c23e;"></i>
+        <div class="card border-0 shadow"
+             style="border-radius:20px;">
 
-                <h5 class="font-weight-bold">Total Dokter</h5>
+            <div class="card-body">
 
-                <h2 class="font-weight-bold"
-                    style="color:#f6c23e;">
-                    <?= $total_dokter; ?>
-                </h2>
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Total Dokter
+                        </small>
+
+                        <h1 class="font-weight-bold text-success">
+                            <?= $total_dokter ?>
+                        </h1>
+
+                    </div>
+
+                    <i class="fas fa-user-md
+                              fa-4x text-success"></i>
+
+                </div>
 
             </div>
+
         </div>
+
     </div>
 
-    <!-- Total Pendaftaran -->
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2"
-             style="border-left:5px solid #800020; border-radius:15px;">
-            <div class="card-body text-center">
+    <div class="col-md-4 mb-4">
 
-                <i class="fas fa-calendar-check fa-3x mb-3"
-                   style="color:#800020;"></i>
+        <div class="card border-0 shadow"
+             style="border-radius:20px;">
 
-                <h5 class="font-weight-bold">Total Pendaftaran</h5>
+            <div class="card-body">
 
-                <h2 class="font-weight-bold"
-                    style="color:#800020;">
-                    <?= $total_pendaftaran; ?>
-                </h2>
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Total Pendaftaran
+                        </small>
+
+                        <h1 class="font-weight-bold text-warning">
+                            <?= $total_pendaftaran ?>
+                        </h1>
+
+                    </div>
+
+                    <i class="fas fa-notes-medical
+                              fa-4x text-warning"></i>
+
+                </div>
 
             </div>
+
         </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="card border-0 shadow"
+             style="border-radius:20px;">
+
+            <div class="card-header bg-white">
+
+                <h5 class="font-weight-bold text-primary mb-0">
+                    Menu Cepat
+                </h5>
+
+            </div>
+
+            <div class="card-body text-center">
+
+                <a href="<?= site_url('pasien'); ?>"
+                   class="btn btn-primary m-2">
+                    Data Pasien
+                </a>
+
+                <a href="<?= site_url('dokter'); ?>"
+                   class="btn btn-success m-2">
+                    Data Dokter
+                </a>
+
+                <a href="<?= site_url('pendaftaran'); ?>"
+                   class="btn btn-warning m-2">
+                    Pendaftaran
+                </a>
+
+                <a href="<?= site_url('laporan'); ?>"
+                   class="btn btn-info m-2">
+                    Laporan
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow"
+             style="border-radius:20px;">
+
+            <div class="card-body text-center">
+
+                <i class="fas fa-calendar-check
+                          fa-4x text-primary mb-3"></i>
+
+                <h5>
+                    <?= date('d F Y'); ?>
+                </h5>
+
+                <span class="badge badge-success">
+                    Sistem Aktif
+                </span>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
