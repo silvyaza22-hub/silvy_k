@@ -91,6 +91,20 @@
             color: #6c757d;
         }
 
+    .btn-success{
+            background: #28a745 !important;
+            border-color: #28a745 !important;
+            color: white !important;
+            border-radius: 50px !important;
+            height: 55px;
+            font-weight: bold;
+        }
+
+        .btn-success:hover{
+            background: #218838 !important;
+            border-color: #218838 !important;
+        }
+
     </style>
 
 </head>
@@ -145,7 +159,9 @@
                                     </h2>
 
                                     <p class="text-muted mb-4">
-                                        Login untuk mengakses Sistem Rumah Sakit
+                                        <p class="text-muted mb-4">
+                                        Pilih akses sebagai Admin atau Pasien
+
                                     </p>
 
                                 </div>
@@ -200,8 +216,21 @@
                                     <button type="submit"
                                             class="btn btn-primary btn-user btn-block">
                                         <i class="fas fa-sign-in-alt"></i>
-                                        Login
+                                        Login Admin
                                     </button>
+
+                                    <div class="text-center my-3">
+                                        <span class="text-muted font-weight-bold">
+                                            ATAU
+                                        </span>
+                                    </div>
+
+                                    <a href="<?= site_url('login_pasien'); ?>"
+                                    class="btn btn-success btn-user btn-block">
+                                        <i class="fas fa-user-injured"></i>
+                                        Login Pasien
+                                    </a>
+                                    
 
                                 </form>
 

@@ -64,7 +64,13 @@
                data-toggle="dropdown">
 
                 <span class="admin-badge mr-3">
-                    Admin
+
+                    <?php if($this->session->userdata('login')): ?>
+                        Admin
+                    <?php elseif($this->session->userdata('login_pasien')): ?>
+                        Pasien
+                    <?php endif; ?>
+
                 </span>
 
                 <img class="profile-img"
@@ -75,7 +81,13 @@
             <div class="dropdown-menu dropdown-menu-right animated--grow-in">
 
                 <div class="dropdown-header text-center">
-                    Administrator
+
+                    <?php if($this->session->userdata('login')): ?>
+                        Administrator
+                    <?php elseif($this->session->userdata('login_pasien')): ?>
+                        Pasien
+                    <?php endif; ?>
+
                 </div>
 
                 <div class="dropdown-divider"></div>
@@ -92,13 +104,27 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item text-danger"
-                   href="<?= site_url('auth/logout')?>">
+                <?php if($this->session->userdata('login_pasien')): ?>
 
-                    <i class="fas fa-sign-out-alt mr-2"></i>
-                    Logout
+                    <a class="dropdown-item text-danger"
+                       href="<?= site_url('login_pasien/logout'); ?>">
 
-                </a>
+                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        Logout
+
+                    </a>
+
+                <?php else: ?>
+
+                    <a class="dropdown-item text-danger"
+                       href="<?= site_url('auth/logout'); ?>">
+
+                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        Logout
+
+                    </a>
+
+                <?php endif; ?>
 
             </div>
 

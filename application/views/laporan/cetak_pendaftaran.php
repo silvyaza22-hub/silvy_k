@@ -31,11 +31,6 @@
             margin-top:15px;
         }
 
-        .tanggal{
-            margin-bottom:15px;
-            font-size:15px;
-        }
-
         table{
             width:100%;
             border-collapse:collapse;
@@ -63,7 +58,7 @@
             font-weight:bold;
         }
 
-        .status-menunggu{
+        .status-diproses{
             color:#ffc107;
             font-weight:bold;
         }
@@ -79,40 +74,30 @@
             margin-top:20px;
         }
 
-        .rekap th{
-            background:#0d4d8b;
-            color:white;
-            text-align:center;
-        }
-
-        .rekap td{
-            text-align:left;
-        }
-
         .ttd{
-        text-align:right;
-        margin-top:40px;
-        }
-
-        .footer{
-            margin-top:150px;
+            text-align:right;
+            margin-top:40px;
         }
     </style>
 </head>
+
 <body>
 
 <?php
 $total_diterima = 0;
 $total_ditolak = 0;
-$total_menunggu = 0;
+$total_diproses = 0;
 
 foreach($data as $d){
-    if($d->status == 'Disetujui') $total_diterima++;
-    if($d->status == 'Ditolak') $total_ditolak++;
-    if($d->status == 'Diproses') $total_menunggu++;
+    $status = strtolower(trim($d->status));
+
+    if($status == 'disetujui') $total_diterima++;
+    elseif($status == 'ditolak') $total_ditolak++;
+    elseif($status == 'diproses') $total_diproses++;
 }
 ?>
 
+<!-- HEADER -->
 <div class="header">
     <h1>RS SEHAT SENTOSA</h1>
     <h3>Sistem Informasi Rumah Sakit</h3>
@@ -121,12 +106,11 @@ foreach($data as $d){
     <h2>LAPORAN PENDAFTARAN PASIEN</h2>
 </div>
 
-
-
+<!-- TABEL DATA -->
 <table>
     <thead>
         <tr>
-            <th width="5%">No</th>
+            <th>No</th>
             <th>Nama Pasien</th>
             <th>Dokter</th>
             <th>Tanggal Daftar</th>
@@ -138,30 +122,41 @@ foreach($data as $d){
 
     <?php $no=1; foreach($data as $d): ?>
 
-    <tr>
-        <td><?= $no++; ?></td>
-        <td><?= $d->nama_pasien; ?></td>
-        <td><?= $d->nama_dokter; ?></td>
-        <td><?= date('d-m-Y', strtotime($d->tanggal_daftar)); ?></td>
+        <?php $status = strtolower(trim($d->status)); ?>
 
-        <td>
-            <?php if($d->status=='Disetujui'): ?>
-                <span class="status-disetujui">Disetujui</span>
+        <tr>
+            <td><?= $no++; ?></td>
+            <td><?= $d->nama_pasien; ?></td>
+            <td><?= $d->nama_dokter; ?></td>
+            <td><?= date('d-m-Y', strtotime($d->tanggal_daftar)); ?></td>
 
-            <?php elseif($d->status=='Diproses'): ?>
-                <span class="status-menunggu">Menunggu</span>
+            <td>
+                <?php if($status == 'disetujui'): ?>
 
-            <?php else: ?>
-                <span class="status-ditolak">Ditolak</span>
-            <?php endif; ?>
-        </td>
-    </tr>
+                    <span class="status-disetujui">Disetujui</span>
+
+                <?php elseif($status == 'diproses'): ?>
+
+                    <span class="status-diproses">Diproses</span>
+
+                <?php elseif($status == 'ditolak'): ?>
+
+                    <span class="status-ditolak">Ditolak</span>
+
+                <?php else: ?>
+
+                    <span><?= $d->status; ?></span>
+
+                <?php endif; ?>
+            </td>
+        </tr>
 
     <?php endforeach; ?>
 
     </tbody>
 </table>
 
+<!-- REKAP -->
 <table class="rekap">
     <tr>
         <td><strong>Total Pendaftaran</strong></td>
@@ -174,8 +169,8 @@ foreach($data as $d){
     </tr>
 
     <tr>
-        <td><strong>Menunggu</strong></td>
-        <td><?= $total_menunggu; ?></td>
+        <td><strong>Diproses</strong></td>
+        <td><?= $total_diproses; ?></td>
     </tr>
 
     <tr>
@@ -184,25 +179,17 @@ foreach($data as $d){
     </tr>
 </table>
 
-<br><br>
-
-<table class="rekap">
- ...
-</table>
-
 <div style="clear:both;"></div>
+
 
 <div class="ttd">
     Tangerang, <?= date('d-m-Y'); ?>
     <br><br><br><br><br>
-    
 </div>
 
 <script>
 window.print();
 </script>
 
-
 </body>
 </html>
-

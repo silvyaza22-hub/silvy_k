@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    <!-- BANNER -->
+    
     <div class="card border-0 shadow-lg mb-4"
          style="border-radius:25px;
                 background:linear-gradient(135deg,#0f4c81,#42a5f5);">

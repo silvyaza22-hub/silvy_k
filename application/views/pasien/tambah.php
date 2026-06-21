@@ -1,13 +1,13 @@
 <form method="post" action="<?= site_url('pasien/simpan'); ?>">
 
-    ```php
+    
 <div class="container-fluid">
 
     <form method="post" action="<?= site_url('pasien/simpan'); ?>">
 
         <div class="card shadow mb-4 border-0">
 
-            <!-- Header -->
+            
             <div class="card-header py-4 text-white"
                  style="background:#0d4d8b;">
 
@@ -18,7 +18,7 @@
 
             </div>
 
-            <!-- Body -->
+            
             <div class="card-body p-4">
 
                 <div class="form-group mb-4">
@@ -109,4 +109,3 @@
     </form>
 
 </div>
-```

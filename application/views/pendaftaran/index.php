@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    <!-- BANNER -->
+    
     <div class="card border-0 shadow-lg mb-4"
          style="border-radius:25px;
                 background:linear-gradient(135deg,#0f4c81,#42a5f5);">
@@ -26,10 +26,8 @@
 
                     <a href="<?= site_url('pendaftaran/tambah'); ?>"
                        class="btn btn-light btn-lg">
-
                         <i class="fas fa-plus"></i>
                         Tambah Pendaftaran
-
                     </a>
 
                 </div>
@@ -40,91 +38,80 @@
 
     </div>
 
+    
     <?php if($this->session->flashdata('success')): ?>
-
         <div class="alert alert-success shadow-sm">
             <?= $this->session->flashdata('success'); ?>
         </div>
-
     <?php endif; ?>
 
-    <!-- STATISTIK -->
+
+    
+    <?php
+        $total = count($pendaftaran);
+
+        $menunggu = count(array_filter($pendaftaran, function($p){
+            return strtolower(trim($p->status)) == 'menunggu'
+                || strtolower(trim($p->status)) == 'proses';
+        }));
+
+        $disetujui = count(array_filter($pendaftaran, function($p){
+            return strtolower(trim($p->status)) == 'disetujui';
+        }));
+
+        $ditolak = count(array_filter($pendaftaran, function($p){
+            return strtolower(trim($p->status)) == 'ditolak';
+        }));
+    ?>
+
     <div class="row mb-4">
 
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow" style="border-radius:20px;">
-
-                <div class="card-body d-flex justify-content-between">
-
-                    <div>
-                        <small class="text-muted">Total Pendaftaran</small>
-                        <h2 class="font-weight-bold text-primary">
-                            <?= count($pendaftaran); ?>
-                        </h2>
-                    </div>
-
-                    <i class="fas fa-clipboard-list fa-3x text-primary"></i>
-
+        <div class="col-md-3">
+            <div class="card shadow border-0" style="border-radius:20px;">
+                <div class="card-body text-center">
+                    <small>Total</small>
+                    <h2 class="text-primary"><?= $total; ?></h2>
                 </div>
-
             </div>
-
         </div>
 
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow" style="border-radius:20px;">
-
-                <div class="card-body d-flex justify-content-between">
-
-                    <div>
-                        <small class="text-muted">Status Aktif</small>
-                        <h2 class="font-weight-bold text-success">
-                            <?= count($pendaftaran); ?>
-                        </h2>
-                    </div>
-
-                    <i class="fas fa-check-circle fa-3x text-success"></i>
-
+        <div class="col-md-3">
+            <div class="card shadow border-0" style="border-radius:20px;">
+                <div class="card-body text-center">
+                    <small>Menunggu</small>
+                    <h2 class="text-warning"><?= $menunggu; ?></h2>
                 </div>
-
             </div>
-
         </div>
 
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow" style="border-radius:20px;">
-
-                <div class="card-body d-flex justify-content-between">
-
-                    <div>
-                        <small class="text-muted">Tanggal Hari Ini</small>
-                        <h5 class="font-weight-bold">
-                            <?= date('d-m-Y'); ?>
-                        </h5>
-                    </div>
-
-                    <i class="fas fa-calendar-alt fa-3x text-warning"></i>
-
+        <div class="col-md-3">
+            <div class="card shadow border-0" style="border-radius:20px;">
+                <div class="card-body text-center">
+                    <small>Disetujui</small>
+                    <h2 class="text-success"><?= $disetujui; ?></h2>
                 </div>
-
             </div>
+        </div>
 
+        <div class="col-md-3">
+            <div class="card shadow border-0" style="border-radius:20px;">
+                <div class="card-body text-center">
+                    <small>Ditolak</small>
+                    <h2 class="text-danger"><?= $ditolak; ?></h2>
+                </div>
+            </div>
         </div>
 
     </div>
 
-    <!-- TABEL -->
+
+    
     <div class="card border-0 shadow" style="border-radius:20px;">
 
         <div class="card-header bg-white py-3">
-
             <h5 class="font-weight-bold text-primary mb-0">
                 <i class="fas fa-list"></i> Daftar Pendaftaran
             </h5>
-
         </div>
 
         <div class="card-body">
@@ -140,51 +127,72 @@
                             <th>Dokter</th>
                             <th>Tanggal Daftar</th>
                             <th>Status</th>
-                            <th width="120">Aksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        <?php $no = 1; foreach($pendaftaran as $p): ?>
+                        <?php $no=1; foreach($pendaftaran as $p): ?>
+
+                        <?php
+                            $status = strtolower(trim($p->status));
+                        ?>
+
                         <tr>
 
                             <td><?= $no++; ?></td>
-
-                            <td>
-                                <strong><?= $p->nama_pasien; ?></strong>
-                            </td>
-
+                            <td><strong><?= $p->nama_pasien; ?></strong></td>
                             <td><?= $p->nama_dokter; ?></td>
-
                             <td><?= $p->tanggal_daftar; ?></td>
 
                             <td>
-                                <span class="badge badge-info p-2">
-                                    <?= $p->status; ?>
-                                </span>
+
+                                <?php if($status == 'menunggu' || $status == 'proses'): ?>
+
+                                    <span class="badge badge-warning p-2">
+                                        <?= ucfirst($status); ?>
+                                    </span>
+
+                                <?php elseif($status == 'disetujui'): ?>
+
+                                    <span class="badge badge-success p-2">
+                                        Disetujui
+                                    </span>
+
+                                <?php elseif($status == 'ditolak'): ?>
+
+                                    <span class="badge badge-danger p-2">
+                                        Ditolak
+                                    </span>
+
+                                <?php else: ?>
+
+                                    <span class="badge badge-secondary p-2">
+                                        <?= $p->status; ?>
+                                    </span>
+
+                                <?php endif; ?>
+
                             </td>
 
                             <td>
 
                                 <a href="<?= site_url('pendaftaran/edit/'.$p->id_daftar); ?>"
                                    class="btn btn-primary btn-sm">
-
                                     <i class="fas fa-edit"></i>
-
                                 </a>
 
                                 <a href="<?= site_url('pendaftaran/hapus/'.$p->id_daftar); ?>"
                                    onclick="return confirm('Yakin ingin menghapus data ini?')"
                                    class="btn btn-danger btn-sm">
-
                                     <i class="fas fa-trash"></i>
-
                                 </a>
 
                             </td>
 
                         </tr>
+
                         <?php endforeach; ?>
 
                     </tbody>

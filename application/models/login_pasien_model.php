@@ -5,9 +5,10 @@ class Login_pasien_model extends CI_Model {
 
     public function cek_login($email, $password)
     {
-        return $this->db->get_where('pasien', [
-            'email' => $email,
-            'password' => $password
-        ])->row();
+        return $this->db
+                    ->where('email', $email)
+                    ->where('password', $password)
+                    ->get('pasien')
+                    ->row();
     }
 }

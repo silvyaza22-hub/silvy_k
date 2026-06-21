@@ -18,7 +18,7 @@
 
             </div>
 
-            <!-- BODY -->
+            
             <div class="card-body p-4">
 
                 <div class="row">

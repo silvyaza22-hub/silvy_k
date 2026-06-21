@@ -1,66 +1,77 @@
+<?php
+    function clean($text){
+        return strtolower(trim($text));
+    }
+
+    $total = count($data);
+
+    $diproses = count(array_filter($data, function($d){
+        return strtolower(trim($d->status)) == 'diproses';
+    }));
+
+    $disetujui = count(array_filter($data, function($d){
+        return strtolower(trim($d->status)) == 'disetujui';
+    }));
+
+    $ditolak = count(array_filter($data, function($d){
+        return strtolower(trim($d->status)) == 'ditolak';
+    }));
+?>
+
 <div class="container-fluid">
 
-    <!-- HEADER -->
+    
     <div class="card border-0 shadow mb-4">
         <div class="card-body text-white"
              style="background:linear-gradient(90deg,#0d4d8b,#3498db);border-radius:10px;">
+
             <h2>
                 <i class="fas fa-file-medical"></i>
                 Laporan Pendaftaran Pasien
             </h2>
+
             <p class="mb-0">
                 Menampilkan data laporan pendaftaran pasien.
             </p>
+
         </div>
     </div>
 
-    <!-- CARD STATISTIK -->
+    <!-- STATISTIK -->
     <div class="row">
 
         <div class="col-md-3 mb-3">
-            <div class="card border-0 shadow">
+            <div class="card shadow border-0">
                 <div class="card-body text-center">
-                    <h6 class="text-muted">Total Pendaftaran</h6>
-                    <h2 class="text-primary"><?= count($data); ?></h2>
+                    <h6>Total</h6>
+                    <h2 class="text-primary"><?= $total; ?></h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
-            <div class="card border-0 shadow">
+            <div class="card shadow border-0">
                 <div class="card-body text-center">
-                    <h6 class="text-muted">Menunggu</h6>
-                    <h2 class="text-warning">
-                        <?= count(array_filter($data, function($d){
-                            return $d->status == 'Diproses';
-                        })); ?>
-                    </h2>
+                    <h6>Diproses</h6>
+                    <h2 class="text-warning"><?= $diproses; ?></h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
-            <div class="card border-0 shadow">
+            <div class="card shadow border-0">
                 <div class="card-body text-center">
-                    <h6 class="text-muted">Disetujui</h6>
-                    <h2 class="text-success">
-                        <?= count(array_filter($data, function($d){
-                            return $d->status == 'Disetujui';
-                        })); ?>
-                    </h2>
+                    <h6>Disetujui</h6>
+                    <h2 class="text-success"><?= $disetujui; ?></h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
-            <div class="card border-0 shadow">
+            <div class="card shadow border-0">
                 <div class="card-body text-center">
-                    <h6 class="text-muted">Ditolak</h6>
-                    <h2 class="text-danger">
-                        <?= count(array_filter($data, function($d){
-                            return $d->status == 'Ditolak';
-                        })); ?>
-                    </h2>
+                    <h6>Ditolak</h6>
+                    <h2 class="text-danger"><?= $ditolak; ?></h2>
                 </div>
             </div>
         </div>
@@ -73,17 +84,14 @@
 
             <form method="get" class="form-inline">
 
-                <label class="mr-2">
-                    <strong>Bulan :</strong>
-                </label>
+                <label class="mr-2"><strong>Bulan :</strong></label>
 
                 <input type="month"
                        name="bulan"
                        value="<?= $bulan; ?>"
                        class="form-control mr-2">
 
-                <button type="submit"
-                        class="btn btn-primary mr-2">
+                <button type="submit" class="btn btn-primary mr-2">
                     <i class="fas fa-filter"></i> Filter
                 </button>
 
@@ -92,7 +100,7 @@
                     Reset
                 </a>
 
-                <a href="<?= site_url('laporan/cetak_pendaftaran'); ?>"
+                <a href="<?= site_url('laporan/cetak_pendaftaran?bulan='.$bulan); ?>"
                    target="_blank"
                    class="btn btn-primary">
                     <i class="fas fa-print"></i> Cetak
@@ -130,35 +138,44 @@
 
                     <tbody>
 
-                    <?php $no=1; foreach($data as $d): ?>
+                        <?php $no=1; foreach($data as $d): ?>
 
-                    <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $d->nama_pasien; ?></td>
-                        <td><?= $d->nama_dokter; ?></td>
-                        <td><?= $d->tanggal_daftar; ?></td>
+                        <?php $status = strtolower(trim($d->status)); ?>
 
-                        <td>
-                            <?php if($d->status == 'Diproses'): ?>
-                                <span class="badge badge-warning">
-                                    Menunggu
-                                </span>
+                        <tr>
 
-                            <?php elseif($d->status == 'Disetujui'): ?>
-                                <span class="badge badge-success">
-                                    Disetujui
-                                </span>
+                            <td><?= $no++; ?></td>
+                            <td><?= $d->nama_pasien; ?></td>
+                            <td><?= $d->nama_dokter; ?></td>
+                            <td><?= $d->tanggal_daftar; ?></td>
 
-                            <?php else: ?>
-                                <span class="badge badge-danger">
-                                    Ditolak
-                                </span>
-                            <?php endif; ?>
-                        </td>
+                            <td>
 
-                    </tr>
+                                <?php if($status == 'diproses'): ?>
 
-                    <?php endforeach; ?>
+                                    <span class="badge badge-warning">Diproses</span>
+
+                                <?php elseif($status == 'disetujui'): ?>
+
+                                    <span class="badge badge-success">Disetujui</span>
+
+                                <?php elseif($status == 'ditolak'): ?>
+
+                                    <span class="badge badge-danger">Ditolak</span>
+
+                                <?php else: ?>
+
+                                    <span class="badge badge-secondary">
+                                        <?= $d->status; ?>
+                                    </span>
+
+                                <?php endif; ?>
+
+                            </td>
+
+                        </tr>
+
+                        <?php endforeach; ?>
 
                     </tbody>
 
@@ -170,4 +187,3 @@
     </div>
 
 </div>
-```
