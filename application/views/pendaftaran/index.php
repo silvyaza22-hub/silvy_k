@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    
+    <!-- HEADER -->
     <div class="card border-0 shadow-lg mb-4"
          style="border-radius:25px;
                 background:linear-gradient(135deg,#0f4c81,#42a5f5);">
@@ -35,10 +35,9 @@
             </div>
 
         </div>
-
     </div>
 
-    
+    <!-- FLASH MESSAGE -->
     <?php if($this->session->flashdata('success')): ?>
         <div class="alert alert-success shadow-sm">
             <?= $this->session->flashdata('success'); ?>
@@ -46,13 +45,12 @@
     <?php endif; ?>
 
 
-    
+    <!-- HITUNG STATUS -->
     <?php
         $total = count($pendaftaran);
 
-        $menunggu = count(array_filter($pendaftaran, function($p){
-            return strtolower(trim($p->status)) == 'menunggu'
-                || strtolower(trim($p->status)) == 'proses';
+        $diproses = count(array_filter($pendaftaran, function($p){
+            return strtolower(trim($p->status)) == 'diproses';
         }));
 
         $disetujui = count(array_filter($pendaftaran, function($p){
@@ -64,6 +62,8 @@
         }));
     ?>
 
+
+    <!-- CARD STATISTIK -->
     <div class="row mb-4">
 
         <div class="col-md-3">
@@ -78,8 +78,8 @@
         <div class="col-md-3">
             <div class="card shadow border-0" style="border-radius:20px;">
                 <div class="card-body text-center">
-                    <small>Menunggu</small>
-                    <h2 class="text-warning"><?= $menunggu; ?></h2>
+                    <small>Diproses</small>
+                    <h2 class="text-warning"><?= $diproses; ?></h2>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
     </div>
 
 
-    
+    <!-- TABLE -->
     <div class="card border-0 shadow" style="border-radius:20px;">
 
         <div class="card-header bg-white py-3">
@@ -134,10 +134,7 @@
                     <tbody>
 
                         <?php $no=1; foreach($pendaftaran as $p): ?>
-
-                        <?php
-                            $status = strtolower(trim($p->status));
-                        ?>
+                        <?php $status = strtolower(trim($p->status)); ?>
 
                         <tr>
 
@@ -148,23 +145,17 @@
 
                             <td>
 
-                                <?php if($status == 'menunggu' || $status == 'proses'): ?>
+                                <?php if($status == 'diproses'): ?>
 
-                                    <span class="badge badge-warning p-2">
-                                        <?= ucfirst($status); ?>
-                                    </span>
+                                    <span class="badge badge-warning p-2">Diproses</span>
 
                                 <?php elseif($status == 'disetujui'): ?>
 
-                                    <span class="badge badge-success p-2">
-                                        Disetujui
-                                    </span>
+                                    <span class="badge badge-success p-2">Disetujui</span>
 
                                 <?php elseif($status == 'ditolak'): ?>
 
-                                    <span class="badge badge-danger p-2">
-                                        Ditolak
-                                    </span>
+                                    <span class="badge badge-danger p-2">Ditolak</span>
 
                                 <?php else: ?>
 

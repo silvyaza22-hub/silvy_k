@@ -7,7 +7,7 @@ class pendaftaran extends CI_Controller {
     {
         parent::__construct();
 
-        // Cek login admin
+        
         if(!$this->session->userdata('login')){
             redirect('auth');
         }
